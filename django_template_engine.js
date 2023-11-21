@@ -1419,16 +1419,16 @@ var countNewLines = function(str){
 }
 
 
-// Expression to match some_token and some_token="with spaces" (and similarly for single-quoted strings).
-var smart_split_re = new RegExp(multilineFuncString(function(){/**
-    ((?:
-        [^\s'"]*
-        (?:
-            (?:"(?:[^"\\]|\\.)*" | '(?:[^'\\]|\\.)*')
-            [^\s'"]*
-        )+
-    ) | \S+)
-*/}).replaceAll(/\s+/g, ""), "g");
+// // Expression to match some_token and some_token="with spaces" (and similarly for single-quoted strings).
+// var smart_split_re = new RegExp(multilineFuncString(function(){/**
+//     ((?:
+//         [^\s'"]*
+//         (?:
+//             (?:"(?:[^"\\]|\\.)*" | '(?:[^'\\]|\\.)*')
+//             [^\s'"]*
+//         )+
+//     ) | \S+)
+// */}).replaceAll(/\s+/g, ""), "g");
 
 function smart_split(text){
     /* Function that splits a string by spaces, leaving quoted phrases together.
@@ -1444,7 +1444,7 @@ function smart_split(text){
     >>> smart_split('A "\\"funky\\" style" test.')
     Array(3) [ "A", "\"\\\"funky\\\" style\"", "test." ]
     */
-    return text.match(smart_split_re);
+    return text.match(/((?:[^\s'"]*(?:(?:"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')[^\s'"]*)+)|\S+)/g);
 }
 
 function is_string_literal(s){
