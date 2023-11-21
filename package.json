@@ -1,0 +1,19 @@
+{
+  "name": "djangotemplateenginejs",
+  "version": "0.6.1",
+  "description": "Django Template Engine in Javascript",
+  "main": "django_template_engine.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegomorales81/djangotemplateenginejs.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diegomorales81/djangotemplateenginejs/issues"
+  },
+  "homepage": "https://github.com/diegomorales81/djangotemplateenginejs#readme"
+}
