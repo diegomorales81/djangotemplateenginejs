@@ -4506,7 +4506,7 @@ IncludeNode.prototype.render = function(context){
     var values = {}
 
     if (!this.extra_context){
-        this.extra_context.entries().forEach(function(entry){
+        Object.entries(this.extra_context).forEach(function(entry){
             values[entry[0]] = entry[1].resolve(context);
         });
     }
