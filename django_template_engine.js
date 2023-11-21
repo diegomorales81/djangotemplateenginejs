@@ -1781,6 +1781,8 @@ function markSafe(s){
     }
 }
 
+// Make the method markSafe() globally available, which can be useful in some cases.
+global.mark_safe = markSafe
 
 var copySafeness = function(dest, target) {
     if (dest instanceof SafeString) {
