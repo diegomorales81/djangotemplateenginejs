@@ -78,7 +78,7 @@ var setDefaults = function(opts, defaults){
             result[optName] = defaults[optName];
     });
 
-    return result;  
+    return result;
 }
 
 var DJANGO_TEMPLATE_SETTINGS = setDefaults(global.DJANGO_TEMPLATE_SETTINGS, {
@@ -86,7 +86,7 @@ var DJANGO_TEMPLATE_SETTINGS = setDefaults(global.DJANGO_TEMPLATE_SETTINGS, {
     DEBUG: false,
     LIBRARIES: null,
     CONTEXT_BUILTINS: {'True': true, 'False': false, 'None': null},
-    STRING_IF_INVALID: "", 
+    STRING_IF_INVALID: "",
     DEFAULT_DATE_TIME_FORMAT: 'j N, g:i:a',
     DEFAULT_TIME_FORMAT: 'G:i:s',
     VARIABLE_NAME_MISSING_WARNING: "Missing variable '%s'"
@@ -173,7 +173,7 @@ var objectGetKeyPath = function( obj, keyPath ){
 
 var dictsort = function(value, key) {
   var keyPath = isArray(key) ? key : key.split(".");
-  
+
   value.sort((a, b) => {
     const aValue = objectGetKeyPath(a, keyPath);
     const bValue = objectGetKeyPath(b, keyPath);
@@ -208,7 +208,7 @@ function groupBy(arr, criteria) {
 // TODO: objectMerge y extend son practicamente identicas
 
 
-function objectMerge(obj1, obj2) {    
+function objectMerge(obj1, obj2) {
     if (!obj2)
         return obj1;
 
@@ -220,7 +220,7 @@ function objectMerge(obj1, obj2) {
 
 function copyDict(obj){
     var new_obj = Object.create(null);
-    
+
     return objectMerge(new_obj, obj);
 }
 
@@ -238,7 +238,7 @@ function slice_list(value, start, stop, step){
             start = Math.min(start, value.length);
         }
     }
-       
+
     if (stop === null) {
         stop = value.length;
     } else {
@@ -247,7 +247,7 @@ function slice_list(value, start, stop, step){
             stop = Math.max(0, stop);
         } else if (stop > 0){
             stop = Math.min(stop, value.length);
-        }        
+        }
     }
 
     if (step === null) {
@@ -369,7 +369,7 @@ function in_operator(x, y) {
       var xkeys = keys(x),
         rkeys = keys(rhs)
 
-      if(xkeys.length === rkeys.length) { 
+      if(xkeys.length === rkeys.length) {
         for(var i = 0, len = xkeys.length, equal = true;
           i < len && equal;
           ++i) {
@@ -377,7 +377,7 @@ function in_operator(x, y) {
               x[xkeys[i]] === rhs[rkeys[i]]
         }
         found = equal
-      } 
+      }
     } else {
       found = x == rhs
     }
@@ -402,8 +402,8 @@ function localize(value, useL10n){
     return value
 }
 
-/** 
- * Huge thanks to TJ Holowaychuk <http://tjholowaychuk.com/>,  
+/**
+ * Huge thanks to TJ Holowaychuk <http://tjholowaychuk.com/>,
  * this is mostly his code from the 'ext' nodejs module.
  */
 var sprintf = function(str) {
@@ -479,7 +479,7 @@ function centerText(text, len, character_filler){
     if (character_filler === undefined) character_filler = ' ';
 
     len -= text.length;
-    if(len < 0) { 
+    if(len < 0) {
         return text;
     }
 
@@ -1116,7 +1116,7 @@ DateTimeFormat.prototype.O = function() {
     var tzoffs = this.data.getTimezoneOffset()
         , offs = ~~(tzoffs / 60)
         , mins = ('00' + ~~Math.abs(tzoffs % 60)).slice(-2)
-    
+
     return ((tzoffs > 0) ? '-' : '+') + ('00' + Math.abs(offs)).slice(-2) + mins
 }
 
@@ -1172,7 +1172,7 @@ DateTimeFormat.prototype.w = function() {
 DateTimeFormat.prototype.W = function() {
     // ISO-8601 week number of year, weeks starting on Monday
     // Algorithm from http://www.personal.ecu.edu/mccartyr/ISOwdALG.txt
-    var jan1_weekday = new Date(this.data.getFullYear(), 0, 1).getDay() 
+    var jan1_weekday = new Date(this.data.getFullYear(), 0, 1).getDay()
         , weekday = this.data.getDay()
         , day_of_year = this.z()
         , week_number
@@ -1241,7 +1241,7 @@ function time_format(value, format_string) {
 var isDigitRe = /^\d+$/;
 var parseDateValue = function(value){
     var d;
-    
+
     if(value instanceof Date) {
         return value;
     } else if (isString(value)){
@@ -1287,14 +1287,14 @@ var parseDateValue = function(value){
     } else {
         return null;
     }
-    
+
     return d;
 }
 
 var floatformat = function(number, arg){
     if (arg === 0)
         return number;
-    
+
     var sign = Math.sign(arg);
     var precision = Math.abs(arg);
 
@@ -1315,7 +1315,7 @@ var floatformat = function(number, arg){
     if (sign === -1 && !numAsStringParts[1]) {
         // If a negative arg, and the mantissa is all 0s, drop it.
         return numAsStringParts[0];
-    }    
+    }
     // If a positive arg, add trailing 0s until we reach the arg count.
     for (let i = remainding; i < precision; i += 1) {
         numAsStringParts[1] += '0';
@@ -1327,7 +1327,7 @@ var floatformat = function(number, arg){
 }
 
 
-function get_text_list(list, last_word){  
+function get_text_list(list, last_word){
     /*
     >>> get_text_list(['a', 'b', 'c', 'd'])
     'a, b, c or d'
@@ -1357,7 +1357,7 @@ function safely(fn) {
     try {
         return fn.call(this, context)
     } catch(err) {
-        console.error(err); 
+        console.error(err);
         return '';
     }
   }
@@ -1541,10 +1541,10 @@ var wrap = function(text, width){
                 }
             }
             lines.push(line.substring(0, space - 1));
-            
+
             line = line.substring(space)
         }
-        
+
         if (line !== null){
             lines.push(line)
         }
@@ -1811,7 +1811,7 @@ var conditionalEscape = function(value){
 
     This function relies on the __html__ convention used by SafeString class.
     */
-    
+
     if(value === null || value === undefined)
         return '';
 
@@ -1868,18 +1868,18 @@ inherits(ContextPopException, Error);
 ContextPopException.prototype.toString = function(){ return "ContextPopException: pop() has been called more times than push()"; }
 
 
-/** @class 
- * 
- * A Context contains all variables passed to the template 
+/** @class
+ *
+ * A Context contains all variables passed to the template
  * by the view. You normally don't create contexts, but rather
- * pass a simple dict (object) to the template's render method. 
- * The template then creates the context. 
- * 
- * We are not using simple dictes for this task 
- * because we need to push and pop additional contexts onto 
+ * pass a simple dict (object) to the template's render method.
+ * The template then creates the context.
+ *
+ * We are not using simple dictes for this task
+ * because we need to push and pop additional contexts onto
  * the original one. This is done by keeping the original dict
  * in a stack on which we push/pop more context dictes.
- *  
+ *
  * @param {dict} original context
  */
 
@@ -1939,8 +1939,8 @@ BaseContext.prototype.copy = function(){
    /**
     * Returns a copy of the context at the moment.
     * Use this when you need to save the current context
-    * and you expect it to change later. 
-    * 
+    * and you expect it to change later.
+    *
     * @returns {Object} the context copy
     */
 
@@ -1971,9 +1971,9 @@ BaseContext.prototype.forEach = function( func ){
 // withContextDict
 BaseContext.prototype.push = function( dict, f ){
    /**
-    * Pushes a new context dict on the current context. 
-    *  
-    * @param {dict} the new context 
+    * Pushes a new context dict on the current context.
+    *
+    * @param {dict} the new context
     */
 
     if (dict){
@@ -1994,8 +1994,8 @@ BaseContext.prototype.push = function( dict, f ){
 
 BaseContext.prototype.pop = function( ){
    /**
-    * Pops the last added context dict from the stack  
-    *  
+    * Pops the last added context dict from the stack
+    *
     * @returns {dict} what we just popped
     */
 
@@ -2016,7 +2016,7 @@ BaseContext.prototype.setDefault = function(key, defaultValue){
         defaultValue = null;
 
     var dict = this.dicts[this.dicts.length-1];
-  
+
     if (hasOwnProperty(dict, key)){
         return dict[key];
     } else {
@@ -2065,24 +2065,24 @@ BaseContext.prototype.has = function( key ){
 
 BaseContext.prototype.get = function( key, otherwise ){
     /**
-    * Retrieves a variable path from the context. The path is 
-    * dot-separated (variable.foo.bar).  
-    * In this case the context looks for a key names 'variable'. 
-    * After finding it, it looks for its 'foo' property and then 
-    * for the 'bar' property of the found property. 
-    *   
-    * If the variable is not found in the context, returns null. 
-    * If the variable is found, but does not have the property,  
+    * Retrieves a variable path from the context. The path is
+    * dot-separated (variable.foo.bar).
+    * In this case the context looks for a key names 'variable'.
+    * After finding it, it looks for its 'foo' property and then
+    * for the 'bar' property of the found property.
+    *
+    * If the variable is not found in the context, returns null.
+    * If the variable is found, but does not have the property,
     * returns undefined, like usual.
-    * 
-    * @param {String} the variable path 
+    *
+    * @param {String} the variable path
     * @returns {Mixed} whatever comes out
     */
 
     otherwise = otherwise || null;
-    
+
     var pathKey;
-    
+
     if (isArray( key )){
         pathKey = key;
     } else {
@@ -2214,7 +2214,7 @@ Context.prototype.update = function(otherDict){
             throw new TemplateError("Context used to update has length 1");
         otherDict = otherDict.dicts[otherDict.dicts.length -1];
     }
-    
+
     otherDict = copyDict(otherDict);
 
     this.dicts.push(otherDict);
@@ -2278,12 +2278,12 @@ var TemplateEngine = function(templateSources, options){
         Object.entries(options.libraries).forEach(function(entry){
             var libraryName = entry[0];
             var library = entry[1];
-            
+
             if (!(library instanceof Library))
                 throw new TemplateError('Library "' + libraryName + '" is not of instance Library');
         });
     }
-    
+
     this.stringIfInvalid = options.string_if_invalid;
     this.autoescape = options.autoescape;
     this.debug = options.debug;
@@ -2302,10 +2302,10 @@ TemplateEngine.renderTemplate = function(templateCode, context, otherTemplateSou
 
 TemplateEngine.addToContextBuiltins = function( dict ){
     /**
-    * Pushes a dict to the default context stack. 
-    * Every context instance will the dictes pushed to the default. 
-    *  
-    * @param {Object} The dict to be pushed 
+    * Pushes a dict to the default context stack.
+    * Every context instance will the dictes pushed to the default.
+    *
+    * @param {Object} The dict to be pushed
     */
     objectMerge( DJANGO_TEMPLATE_SETTINGS.CONTEXT_BUILTINS, dict );
 }
@@ -2317,22 +2317,22 @@ TemplateEngine.createTemplateLibrary = function(){
 TemplateEngine.prototype.createLibrary = function(name){
     if (this.templateLibraries[name] !== undefined)
         throw new Error("Library name already registered: " + name);
-    
+
     var library = new Library();
     this.templateLibraries[name] = library;
-    
+
     return library;
 }
 
 TemplateEngine.prototype.addLibrary = function(name, library){
     if (this.templateLibraries[name] !== undefined)
         throw new Error("Library name already registered: " + name);
-    
+
     if (!(library instanceof Library)){
-        throw new Error("'library' is not of instance Library");        
+        throw new Error("'library' is not of instance Library");
     }
-    
-    this.templateLibraries[name] = library;    
+
+    this.templateLibraries[name] = library;
 }
 
 TemplateEngine.prototype.getTemplateFromString = function(templateCode){
@@ -2478,7 +2478,7 @@ Lexer.prototype.createToken = function(token_string, position, lineno, in_tag){
     otherwise it should be treated as a literal string.
     */
     var content;
-    
+
     if (in_tag){
         // The [0:2] and [2:-2] ranges below strip off *_TAG_START and
         // *_TAG_END. The 2's are hard-coded for performance. Using
@@ -2502,7 +2502,7 @@ Lexer.prototype.createToken = function(token_string, position, lineno, in_tag){
             }
             return new Token(BLOCK_TOKEN, content, position, lineno)
         }
-        
+
         if (!this.verbatim){
             content = token_string.substring(2, token_string.length-2).trim();
 
@@ -2514,7 +2514,7 @@ Lexer.prototype.createToken = function(token_string, position, lineno, in_tag){
             return new Token(COMMENT_TOKEN, content, position, lineno)
         }
     }
-    
+
     return new Token(TEXT_TOKEN, token_string, position, lineno);
 }
 
@@ -2786,12 +2786,12 @@ var num = '[-+\\.]?\\d[\\d\\.e]*';
 var filter_sep = escapeRe(FILTER_SEPARATOR);
 var arg_sep = escapeRe(FILTER_ARGUMENT_SEPARATOR);
 
-var filter_raw_string = 
+var filter_raw_string =
     "^(?<constant>" + constant_string + ")|" + // constant
     "^(?<variable>[" + var_chars + "]+|" + num + ")|" + // variable
-      '(?:\\s*' + filter_sep + '\\s*' + 
+      '(?:\\s*' + filter_sep + '\\s*' +
          '(?<filter_name>\\w+)' + // filter_name
-            '(?:' + arg_sep + 
+            '(?:' + arg_sep +
                 '(?:' +
                     '(?<constant_arg>' + constant_string +')|' + // constant_arg
                     '(?<var_arg>[' + var_chars + ']+|' + num + ')'+ // variable_arg
@@ -2823,7 +2823,7 @@ var FilterExpression = function(token, parser){
     var upto = 0;
 
     filter_re.lastIndex = 0;
-    
+
     matchAll(token, filter_re, function(m){
         var start = m.index;
         if (upto != start){
@@ -2838,7 +2838,7 @@ var FilterExpression = function(token, parser){
                 var_obj = (new Variable(constant)).resolve({});
                 if (var_obj === VARIABLE_DOES_NOT_EXISTS){
                     var_obj = null;
-                }             
+                }
             } else if (variable === undefined) {
                 throw new TemplateSyntaxError("Could not find variable at start of " + token + ".");
             } else {
@@ -2977,7 +2977,7 @@ var Variable = function(variable){
     if (!isString(variable)){
         throw new TemplateError("Variable must be a string or number, got " + typeof variable);
     }
-    
+
     var num = parseFloat(variable);
 
     if (isNaN(num)){
@@ -3044,6 +3044,8 @@ Variable.prototype._resolveLookup = function(context){
     detail and shouldn't be called by external code. Use Variable.resolve()
     instead.
     */
+    var obj
+    var new_obj
 
     if (context instanceof BaseContext){
         obj = context.get(this.lookups[0], VARIABLE_DOES_NOT_EXISTS);
@@ -3055,19 +3057,21 @@ Variable.prototype._resolveLookup = function(context){
     var p = this.lookups.slice(1);
     for( var i=0, j=p.length; i<j; ++i ){
         new_obj = obj[ p[ i ] ]
-        if( new_obj === undefined)
+        if( new_obj === undefined) {
+            obj = VARIABLE_DOES_NOT_EXISTS
             break;
- 
+        }
+
         if (isFunction(new_obj) && !new_obj.do_not_call_in_templates){
             if (new_obj.alters_data){
                 // TODO
                 // current = context.template.engine.string_if_invalid
                 throw new Error('Variable alters data')
-            } else {          
+            } else {
                 new_obj = new_obj.call(obj);
             }
         }
-        
+
         obj = new_obj;
     }
     return obj;
@@ -3236,7 +3240,7 @@ VariableNode.prototype.render = function(context){
 }
 
 
-var tag_re_source = '('  + 
+var tag_re_source = '('  +
     [
         escapeRe(BLOCK_TAG_START) + '.*?' + escapeRe(BLOCK_TAG_END),
         escapeRe(VARIABLE_TAG_START) + '.*?' + escapeRe(VARIABLE_TAG_END),
@@ -3274,13 +3278,13 @@ var tag_re = new RegExp(tag_re_source, "g");
 function TemplateError(message) {
     var error = new Error(message);
     var error_name = this.constructor.name;
-    
+
     Object.defineProperty(error, 'name', {
         value: error_name
     });
-    
+
     Object.setPrototypeOf(error, Object.getPrototypeOf(this))
-    
+
     return error;
 }
 
@@ -3610,7 +3614,7 @@ function InfixOperator(bp, cmp) {
 
   this.first = null;
   this.second = null;
-} 
+}
 
 
 InfixOperator.prototype.led = function(lhs, parser) {
@@ -3710,49 +3714,49 @@ var OPERATORS = {
   }
 
   , '===': function() {
-      return new InfixOperator(10, function(context, x, y) { 
+      return new InfixOperator(10, function(context, x, y) {
           return x.evaluate(context) === y.evaluate(context)
       })
     }
 
   , '!==': function() {
-      return new InfixOperator(10, function(context, x, y) { 
+      return new InfixOperator(10, function(context, x, y) {
           return x.evaluate(context) !== y.evaluate(context)
       })
     }
 
   , '==': function() {
-      return new InfixOperator(10, function(context, x, y) { 
+      return new InfixOperator(10, function(context, x, y) {
           return x.evaluate(context) == y.evaluate(context)
       })
     }
 
   , '!=': function() {
-        return new InfixOperator(10, function(context, x, y) { 
+        return new InfixOperator(10, function(context, x, y) {
             return x.evaluate(context) != y.evaluate(context)
         })
     }
 
   , '>': function() {
-        return new InfixOperator(10, function(context, x, y) { 
+        return new InfixOperator(10, function(context, x, y) {
             return x.evaluate(context) > y.evaluate(context)
         })
     }
 
   , '>=': function() {
-        return new InfixOperator(10, function(context, x, y) { 
+        return new InfixOperator(10, function(context, x, y) {
             return x.evaluate(context) >= y.evaluate(context)
         })
     }
 
   , '<': function() {
-        return new InfixOperator(10, function(context, x, y) { 
+        return new InfixOperator(10, function(context, x, y) {
             return x.evaluate(context) < y.evaluate(context)
         })
     }
 
   , '<=': function() {
-        return new InfixOperator(10, function(context, x, y) { 
+        return new InfixOperator(10, function(context, x, y) {
             return x.evaluate(context) <= y.evaluate(context)
         })
     }
@@ -3771,7 +3775,7 @@ Object.entries(OPERATORS).forEach(function(entry){
 var Literal = function(value) {
     /*
     A basic self-resolvable object similar to a Django template variable.
-    
+
     IfParser uses Literal in createVar, but TemplateIfParser overrides createVar so that a proper implementation that actually resolves variables, filters etc. is used. */
     this.value = value;
 }
@@ -4011,7 +4015,7 @@ Library.prototype.filterFunction = function(func, flags){
 Library.prototype.simpleTag = function(){
     /*
     Register a callable as a compiled template tag. Example:
-    
+
     register.simpleTag(function hello(){
         return 'world'
     });
@@ -4038,7 +4042,7 @@ Library.prototype.simpleTag = function(){
     } else {
         throw new TemplateError("Invalid number of arguments to simpleTag.");
     }
-    
+
     if (!isFunction(func)){
         throw new TemplateError("No callback provided to simpleTag.");
     }
@@ -4155,7 +4159,7 @@ inherits(TagHelperNode, Node);
 
 TagHelperNode.prototype.getResolvedArguments = function(context){
     var resolved_arguments = [];
-    
+
     if (this.args){
         this.args.forEach(function(variable){
             resolved_arguments.push(variable.resolve(context));
@@ -4165,7 +4169,7 @@ TagHelperNode.prototype.getResolvedArguments = function(context){
     if (this.takes_context){
         resolved_arguments.unshift(context);
     }
-    
+
     if (this.kwargs){
         var resolved_kwargs = {};
         Object.entries(this.kwargs).forEach(function(entry){
@@ -4270,7 +4274,7 @@ var parse_bits = function(parser, bits, name){
         } else {
             if (handling_positional_args){
                 // Record the positional argument
-                args.push(parser.compileFilter(bit))                
+                args.push(parser.compileFilter(bit))
             } else {
                 throw new TemplateSyntaxError("'" + name + "' received some positional argument(s) after some keyword argument(s)");
             }
@@ -4337,7 +4341,7 @@ var BlockNode = function(name, nodelist, parent){
     this.name = name;
     this.nodelist = nodelist;
     this.parent = parent || null;
-    
+
     BlockNode.baseConstructor.call(this);
 }
 
@@ -4405,7 +4409,7 @@ var ExtendsNode = function(nodelist, parent_name){
     });
 
     this.blocks = blocks;
-    
+
     ExtendsNode.baseConstructor.call(this);
 }
 
@@ -4423,7 +4427,7 @@ ExtendsNode.prototype.getParent = function(context){
         var error_msg = "Invalid template name in 'extends' tag: " + parent + ".";
 
         if (this.parent_name.filters || (this.parent_name.variable instanceof Variable)) {
-            error_msg += " Got this from the '" + this.parent_name.token + "' variable.";   
+            error_msg += " Got this from the '" + this.parent_name.token + "' variable.";
         }
         throw new TemplateSyntaxError(error_msg)
     }
@@ -4481,7 +4485,7 @@ var IncludeNode = function(template, extra_context, isolated_context){
     this.template = template;
     this.extra_context = extra_context || null;
     this.isolated_context = isolated_context || false;
-    
+
     IncludeNode.baseConstructor.call(this);
 }
 
@@ -4534,7 +4538,7 @@ defaultTemplateLibrary.tag('block', function(parser, token){
             throw new TemplateSyntaxError("'" +  bits[0] + "' tag with name '" + block_name + "'; appears more than once");
         parser.__loaded_blocks.push(block_name)
     }
-     
+
     var nodelist = parser.parse(['endblock'])
 
     // This check is kept for backwards-compatibility. See #3100.
@@ -4841,7 +4845,7 @@ defaultTemplateLibrary.stringfilter('title', function(str) {
 
     var bits = str.split(/\s{1}/g)
       , out = [];
-  
+
     while(bits.length) {
         var word = bits.shift();
         word = word.charAt(0).toUpperCase() + word.slice(1);
@@ -4943,7 +4947,7 @@ defaultTemplateLibrary.stringfilter('urlize', function(str, arg) {
   // Convert URLs in plain text into clickable links.
 
   return markSafe(str.replace(/(((http(s)?:\/\/)|(mailto:))([\w\d\-\.:@\/])+)/g, function() {
-    return '<a href="'+arguments[0]+'">'+arguments[0]+'</a>'; 
+    return '<a href="'+arguments[0]+'">'+arguments[0]+'</a>';
   }))
 }, {
     "is_safe": true,
@@ -5275,7 +5279,7 @@ defaultTemplateLibrary.filter('random', function(value) {
 
 
 defaultTemplateLibrary.filter('slice', function(value, arg) {
-    var sliceParams = String(arg).split(':').map(function(i){ 
+    var sliceParams = String(arg).split(':').map(function(i){
         if (i === "") {
             return null;
         } else {
@@ -5293,7 +5297,7 @@ defaultTemplateLibrary.filter('slice', function(value, arg) {
     var start = sliceParams[0];
     var stop = sliceParams[1];
     var step = sliceParams[2];
-    
+
     var result = slice_list(value, start, stop, step);
     return result;
 }, {
@@ -5457,7 +5461,7 @@ defaultTemplateLibrary.filter('timeuntil', function(value, arg) {
         now = parseDateValue(arg);
         if (now === null) throw new TemplateError("Filter argument is not a valid date.");
     }
-  
+
     return timesince(now, value)
 }, {
     "is_safe": false
@@ -5468,11 +5472,11 @@ defaultTemplateLibrary.filter('date', function(value, arg) {
     // Format a date according to the given format.
     var value = parseDateValue(value);
     if (value === null) throw new TemplateError("Filter value is not a valid date.");
- 
+
     if (arg === undefined || arg === null){
         arg = DJANGO_TEMPLATE_SETTINGS.DEFAULT_DATE_TIME_FORMAT;
     }
-    
+
     return date_time_format(value, arg);
 }, {
     "is_safe": false
@@ -5560,10 +5564,10 @@ defaultTemplateLibrary.filter('yesno', function(value, arg) {
 }, {
     "is_safe": false,
 })
- 
+
 
 /********************/
-/* MISC             */ 
+/* MISC             */
 /********************/
 
 defaultTemplateLibrary.filter('filesizeformat', function(value) {
@@ -5608,7 +5612,7 @@ defaultTemplateLibrary.filter('filesizeformat', function(value) {
 
 
 defaultTemplateLibrary.filter('pluralize', function(input, plural) {
-/*    
+/*
     Return a plural suffix if the value is not 1, '1', or an object of
     length 1. By default, use 's' as the suffix:
 
@@ -6004,7 +6008,7 @@ IfChangedNode.prototype.render = function(context){
     if (this._varlist.length !== 0){
         // Consider multiple parameters. This behaves like an OR evaluation of the multiple variables.
         compare_to = this._varlist.map(function(variable){
-            return variable.resolve(context, true) 
+            return variable.resolve(context, true)
         });
     } else {
         // The "{% ifchanged %}" syntax (without any variables) compares the rendered output.
@@ -6817,7 +6821,7 @@ defaultTemplateLibrary.tag('ifnotequal', function(parser, token){
 
 var TemplateLiteral = function(value, text){
     this.text = text  // for better error messages
-    
+
     TemplateLiteral.baseConstructor.call(this, value);
     this.value = value;
 }
@@ -6994,7 +6998,7 @@ var findLibrary = function(parser, name){
         return parser.libraries[name]
     } else {
         var registeredLibraryNames = Object.keys(parser.libraries);
-        
+
         if (registeredLibraryNames.length === 0){
            throw new TemplateSyntaxError(
                 "Not possible to load '" + name + "'. No registered library yet."
@@ -7255,7 +7259,7 @@ defaultTemplateLibrary.tag('resetcycle', function(parser, token){
         if (!parser.hasOwnProperty("_named_cycle_nodes") || parser._named_cycle_nodes[name] === undefined){
             throw new TemplateSyntaxError("Named cycle '" + name +"' does not exist.");
         }
-        return new ResetCycleNode(parser._named_cycle_nodes[name]);            
+        return new ResetCycleNode(parser._named_cycle_nodes[name]);
     }
 
     if (!parser.hasOwnProperty("_last_cycle_node")){
