@@ -1482,7 +1482,9 @@ function unescape_string_literal(s){
         "'ab' c"
     */
     var quote = s[0];
-    return s.substring(1, s.length-1).replaceAll('\\' + quote, quote).replaceAll('\\', '\\');
+    var rx1 = new RegExp("\\" + quote, 'g');
+    var rx2 = new RegExp("\\\\", 'g');
+    return s.substring(1, s.length-1).replace(rx1, quote).replace(rx2, '\\');
 }
 
 
@@ -5089,7 +5091,7 @@ defaultTemplateLibrary.stringfilter('linebreaks', function(str, arg, autoescape)
       .split(/\n{2,}/g)
       .map(function(sentence){
         var output = autoescape ? escapeHtml(sentence) : sentence;
-        return '<p>' + output.replaceAll('\n', '<br>') + '</p>';
+        return '<p>' + output.replace(new RegExp('\n', 'g'), '<br>') + '</p>';
       })
       .join('')
   );
